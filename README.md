@@ -14,6 +14,7 @@ The Pose (Tracking) results for each sequence are required to be stored in a fol
     * results.txt (will be generated)
 
 The Evaluation Daemon will search for such folders and runs the official posetrack evaluation toolbox on each folder.
+
 A file with all results is saved as shown above.
 
 ## Usage 
