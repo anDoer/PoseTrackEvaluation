@@ -23,4 +23,5 @@ A file with all results is saved as shown above.
 
 where 
 > $POSETRACK_GT_PATH = '$POSETRACK_DIR/posetrack_data/annotations/val'
+
 for the validation set.
