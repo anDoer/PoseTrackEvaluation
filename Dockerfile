@@ -26,7 +26,7 @@ RUN apt-get install -y  python-pip
 RUN pip install numpy pandas scipy tqdm click shapely
 
 WORKDIR /opt/
-RUN git clone --recurse-submodules https://github.com/leonid-pishchulin/poseval.git
+RUN git clone --recurse-submodules https://github.com/anDoer/poseval.git
 RUN chmod -R 777 poseval
 
 WORKDIR /home/

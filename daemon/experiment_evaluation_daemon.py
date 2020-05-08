@@ -32,7 +32,7 @@ def perform_evaluation(toolkit_path, gt_directory, prediction_directory, pose_on
                                               'evalPoseTracking'])
 
         results = result_str.decode('utf8').splitlines()
-        tracking_results = results[-4:]
+        tracking_results = results[-7:]
         print('\t\tTracking [x]')
         return pose_results, tracking_results
     else:
