@@ -23,7 +23,7 @@ def perform_evaluation(toolkit_path, gt_directory, prediction_directory, pose_on
     results = result_str.decode('utf8').splitlines()
     pose_results = results[-2:]
     print('\t\tPose [x]')
-    if not pose_only:
+    if pose_only == 0:
         result_str = subprocess.check_output(['./run_tracking_benchmark_dummy.sh',
                                               'Empty',
                                               toolkit_path,
@@ -90,7 +90,7 @@ def walk(folders, evaluated_folders, args):
                     for item in pose_results:
                         f.write("%s\n" % item)
 
-                    if not args.eval_pose_only:
+                    if args.eval_pose_only == 0:
                         f.write("POSE TRACKING\n")
                         for item in tracking_results:
                             f.write("%s\n" % item)
@@ -114,7 +114,7 @@ def build_parameters():
 
     parser.add_argument('--num_validation_sequences', type=int, required=True)
 
-    parser.add_argument('--eval_pose_only', action='store_true')
+    parser.add_argument('--eval_pose_only', type=int, default=0)
 
     return parser.parse_args()
 
