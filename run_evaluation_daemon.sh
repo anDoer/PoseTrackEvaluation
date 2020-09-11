@@ -3,15 +3,16 @@ USERNAME=user
 SRC_DIR="$PWD/daemon"
 
 echo ""
-if test "$#" -ne 3; then
-    echo "Expected three keywords: \$experiment_dir \$gt_dir \$num_gt_files"
+if test "$#" -ne 4; then
+    echo "Expected three keywords: \$experiment_dir \$gt_dir \$num_gt_files \$pose_only"
     echo ""
     exit 1
 fi
 
 EXP_INPUT="$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
 GT_INPUT="$(cd "$(dirname "$2")"; pwd)/$(basename "$2")"
-
+NUM_VAL_SEQUENCES=$3
+POSE_ONLY=$4
 
 if [ ! -d "$EXP_INPUT" ]; then
     echo "Input directory '$EXP_INPUT' does not exist! (exit)"
@@ -32,7 +33,8 @@ docker run\
     -v "$GT_INPUT":"/home/$USERNAME/gt_data"\
     --rm -it\
     andoer/posetrack_eval_daemon \
-    python experiment_evaluation_daemon.py --num_validation_sequences=50 \
+    python experiment_evaluation_daemon.py --num_validation_sequences=$NUM_VAL_SEQUENCES \
     --toolkit_path=/opt/poseval/py \
     --experiment_data_path="/home/$USERNAME/experiments" \
-    --gt_directory_path="/home/$USERNAME/gt_data"
+    --gt_directory_path="/home/$USERNAME/gt_data" \
+    --eval_pose_only=$POSE_ONLY
